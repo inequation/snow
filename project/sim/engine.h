@@ -31,10 +31,10 @@ struct Node;
 struct NodeCache;
 struct Particle;
 struct ParticleCache;
-struct ParticleGrid;
-struct ParticleSystem;
+class ParticleGrid;
+class ParticleSystem;
 
-struct MitsubaExporter;
+class MitsubaExporter;
 
 class Engine : public QObject, public Renderable
 {

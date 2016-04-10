@@ -19,7 +19,7 @@
 #include "geometry/bbox.h"
 #include "sim/particlegridnode.h"
 
-class ImplicitCollider;
+struct ImplicitCollider;
 class SceneNode;
 
 class MitsubaExporter

@@ -25,7 +25,7 @@
 
 
 //struct vec3;
-struct BBox;
+class BBox;
 
 class Renderable
 {

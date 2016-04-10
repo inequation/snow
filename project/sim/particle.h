@@ -31,8 +31,8 @@ struct Particle
     {
         position = vec3( 0.f, 0.f, 0.f );
         velocity = vec3( 0.f, 0.f, 0.f );
-        mass = 1e-6;
-        volume = 1e-9;
+        mass = 1e-6f;
+        volume = 1e-9f;
         elasticF = mat3( 1.f );
         plasticF = mat3( 1.f );
         material = Material(); // default

@@ -34,7 +34,7 @@ struct ImplicitCollider;
 
 class Scene;
 class Engine;
-class Grid;
+struct Grid;
 class ParticleSystem;
 
 class SceneIO

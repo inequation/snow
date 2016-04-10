@@ -71,6 +71,8 @@ bool SceneIO::read(QString filename, Scene *scene, Engine *engine)
     applyParticleSystem(scene);
     applyGrid(scene);
     applyColliders(scene, engine);
+
+	return true;
 }
 
 void SceneIO::applySimulationParameters()
@@ -233,6 +235,7 @@ bool SceneIO::write(Scene *scene, Engine *engine)
     if (!file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text))
     {
         LOG("write failed!");
+		return true;
     }
     else
     {
@@ -241,6 +244,7 @@ bool SceneIO::write(Scene *scene, Engine *engine)
         stream << m_document.toString(indent);
         file.close();
         LOG("file written!");
+		return false;
     }
 }
 

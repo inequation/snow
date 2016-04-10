@@ -36,9 +36,9 @@ struct Material
     // Constants from paper
     __host__ __device__ Material()
     {
-        setYoungsAndPoissons( E0, POISSONS_RATIO );
+        setYoungsAndPoissons( E0, (float)POISSONS_RATIO );
         xi = 10;
-        setCriticalStrains( MAX_THETA_C, MAX_THETA_S );
+        setCriticalStrains( (float)MAX_THETA_C, (float)MAX_THETA_S );
     }
 
     __host__ __device__
@@ -50,7 +50,7 @@ struct Material
           criticalCompressionRatio(compression),
           criticalStretchRatio(stretch)
     {
-        setYoungsAndPoissons( youngsModulus, POISSONS_RATIO );
+        setYoungsAndPoissons( youngsModulus, (float)POISSONS_RATIO );
     }
 
     // Set constants in terms of Young's modulus and Poisson's ratio

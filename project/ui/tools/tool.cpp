@@ -48,12 +48,12 @@ Tool::getAxialColor( unsigned int axis )
 {
     switch ( axis ) {
     case 0:
-        return vec3( 186/255., 70/255., 85/255. );
+        return vec3( 186/255.f, 70/255.f, 85/255.f );
     case 1:
-        return vec3( 91/255., 180/255., 71/255. );
+        return vec3( 91/255.f, 180/255.f, 71/255.f );
     case 2:
-        return vec3( 79/255., 79/255., 190/255. );
+        return vec3( 79/255.f, 79/255.f, 190/255.f );
     default:
-        return vec3( 190/255., 190/255., 69/255. );
+        return vec3( 190/255.f, 190/255.f, 69/255.f );
     }
 }
