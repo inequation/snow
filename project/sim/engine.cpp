@@ -11,6 +11,7 @@
 #include <GL/glew.h>
 
 #include "common/common.h"
+#include "common/ensure.h"
 #include "io/mitsubaexporter.h"
 #include "sim/caches.h"
 #include "sim/implicitcollider.h"
@@ -42,7 +43,7 @@ Engine::Engine()
 
     m_hostParticleCache = NULL;
 
-    assert( connect(&m_ticker, SIGNAL(timeout()), this, SLOT(update())) );
+    ensure( connect(&m_ticker, SIGNAL(timeout()), this, SLOT(update())) );
 }
 
 Engine::~Engine()

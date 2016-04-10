@@ -347,6 +347,9 @@
     <ClInclude Include="..\tests\tests.h">
       <Filter>Header Files\tests</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\ensure.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\ui\mainwindow.ui">

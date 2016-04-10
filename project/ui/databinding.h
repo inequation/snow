@@ -12,6 +12,7 @@
 #define DATABINDING_H
 
 #include "common/common.h"
+#include "common/ensure.h"
 
 #include <QCheckBox>
 #include <QComboBox>
@@ -36,7 +37,7 @@ public:
     {
         IntBinding *binding = new IntBinding( value, parent );
         spinbox->setValue( value );
-        assert( connect(spinbox, SIGNAL(valueChanged(int)), binding, SLOT(valueChanged(int))) );
+        ensure( connect(spinbox, SIGNAL(valueChanged(int)), binding, SLOT(valueChanged(int))) );
         return binding;
     }
 
@@ -44,7 +45,7 @@ public:
     {
         IntBinding *binding = new IntBinding( value, parent );
         lineEdit->setText( QString::number(value) );
-        assert( connect(lineEdit, SIGNAL(textChanged(QString)), binding, SLOT(valueChanged(QString))) );
+        ensure( connect(lineEdit, SIGNAL(textChanged(QString)), binding, SLOT(valueChanged(QString))) );
         return binding;
     }
 
@@ -52,7 +53,7 @@ public:
     {
         IntBinding *binding = new IntBinding( value, parent );
         slider->setValue( value );
-        assert( connect(slider, SIGNAL(valueChanged(int)), binding, SLOT(valueChanged(int))) );
+        ensure( connect(slider, SIGNAL(valueChanged(int)), binding, SLOT(valueChanged(int))) );
         return binding;
     }
 
@@ -61,7 +62,7 @@ public:
         IntBinding *binding = new IntBinding( value, parent );
         checkbox->setTristate( true );
         checkbox->setCheckState( (Qt::CheckState)(value) );
-        assert( connect(checkbox, SIGNAL(stateChanged(int)), binding, SLOT(valueChanged(int))) );
+        ensure( connect(checkbox, SIGNAL(stateChanged(int)), binding, SLOT(valueChanged(int))) );
         return binding;
     }
 
@@ -98,7 +99,7 @@ public:
     {
         FloatBinding *binding = new FloatBinding( value, parent );
         spinbox->setValue( value );
-        assert( connect(spinbox, SIGNAL(valueChanged(double)), binding, SLOT(valueChanged(double))) );
+        ensure( connect(spinbox, SIGNAL(valueChanged(double)), binding, SLOT(valueChanged(double))) );
         return binding;
     }
 
@@ -106,7 +107,7 @@ public:
     {
         FloatBinding *binding = new FloatBinding( value, parent );
         lineEdit->setText( QString::number(value) );
-        assert( connect(lineEdit, SIGNAL(textChanged(QString)), binding, SLOT(valueChanged(QString))) );
+        ensure( connect(lineEdit, SIGNAL(textChanged(QString)), binding, SLOT(valueChanged(QString))) );
         return binding;
     }
 
@@ -143,7 +144,7 @@ public:
     {
         BoolBinding *binding = new BoolBinding( value, parent );
         checkbox->setChecked( value );
-        assert( connect(checkbox, SIGNAL(toggled(bool)), binding, SLOT(valueChanged(bool))) );
+        ensure( connect(checkbox, SIGNAL(toggled(bool)), binding, SLOT(valueChanged(bool))) );
         return binding;
     }
 
@@ -172,14 +173,14 @@ private:
 //    {
 //        BoolBinding *binding = new BoolBinding( value, parent );
 //        checkbox->setChecked( value );
-//        assert( connect(checkbox, SIGNAL(toggled(bool)), binding, SLOT(valueChanged(bool))) );
+//        ensure( connect(checkbox, SIGNAL(toggled(bool)), binding, SLOT(valueChanged(bool))) );
 //        return binding;
 //    }
 //    static StringBinding* bindLabel(QLabel *label,const QString &s, QObject *parent = NULL )
 //    {
 //        StringBinding *binding = new StringBinding( value, parent );
 //        label->setText(s);
-//        assert( connect(binding,SIGNAL(parent->set)))
+//        ensure( connect(binding,SIGNAL(parent->set)))
 
 //    }
 
@@ -217,8 +218,8 @@ public:
         m_slider->setMinimum( min );
         m_slider->setMaximum( max );
         m_edit->setValidator( new QIntValidator(min, max, m_edit) );
-        assert( connect(m_slider, SIGNAL(valueChanged(int)), this, SLOT(valueChanged(int))) );
-        assert( connect(m_edit, SIGNAL(textChanged(QString)), this, SLOT(valueChanged(QString))) );
+        ensure( connect(m_slider, SIGNAL(valueChanged(int)), this, SLOT(valueChanged(int))) );
+        ensure( connect(m_edit, SIGNAL(textChanged(QString)), this, SLOT(valueChanged(QString))) );
     }
 
     static SliderIntAttribute* bindInt( QSlider *slider, QLineEdit *edit, int min, int max, int *value, QObject *parent )
@@ -229,14 +230,14 @@ public:
     static SliderIntAttribute* bindSlot( QSlider *slider, QLineEdit *edit, int min, int max, QObject *object, const char *slot )
     {
         SliderIntAttribute *attr = new SliderIntAttribute( slider, edit, min, max, NULL, object );
-        assert( connect(attr, SIGNAL(attributeChanged(int)), object, slot) );
+        ensure( connect(attr, SIGNAL(attributeChanged(int)), object, slot) );
         return attr;
     }
 
     static SliderIntAttribute* bindIntAndSlot( QSlider *slider, QLineEdit *edit, int min, int max, int *value, QObject *object, const char *slot )
     {
         SliderIntAttribute *attr = new SliderIntAttribute( slider, edit, min, max, value, object );
-        assert( connect(attr, SIGNAL(attributeChanged(int)), object, slot) );
+        ensure( connect(attr, SIGNAL(attributeChanged(int)), object, slot) );
         return attr;
     }
 
@@ -294,8 +295,8 @@ public:
         m_slider->setMinimum(0);
         m_slider->setMaximum( int(1000*(m_max-m_min)+0.5f) );
         m_edit->setValidator( new QDoubleValidator(m_min, m_max, 3, m_edit) );
-        assert( connect(m_slider, SIGNAL(valueChanged(int)), this, SLOT(valueChanged(int))) );
-        assert( connect(m_edit, SIGNAL(textChanged(QString)), this, SLOT(valueChanged(QString))) );
+        ensure( connect(m_slider, SIGNAL(valueChanged(int)), this, SLOT(valueChanged(int))) );
+        ensure( connect(m_edit, SIGNAL(textChanged(QString)), this, SLOT(valueChanged(QString))) );
     }
 
     static SliderFloatAttribute* bindFloat( QSlider *slider, QLineEdit *edit, float min, float max, float *value, QObject *parent )
@@ -306,14 +307,14 @@ public:
     static SliderFloatAttribute* bindSlot( QSlider *slider, QLineEdit *edit, float min, float max, QObject *object, const char *slot )
     {
         SliderFloatAttribute* attr = new SliderFloatAttribute( slider, edit, min, max, NULL, object );
-        assert( connect(attr, SIGNAL(attributeChanged(float)), object, slot) );
+        ensure( connect(attr, SIGNAL(attributeChanged(float)), object, slot) );
         return attr;
     }
 
     static SliderFloatAttribute* bindFloatAndSlot( QSlider *slider, QLineEdit *edit, float min, float max, float *value, QObject *object, const char *slot )
     {
         SliderFloatAttribute* attr = new SliderFloatAttribute( slider, edit, min, max, value, object );
-        assert( connect(attr, SIGNAL(attributeChanged(float)), object, slot ) );
+        ensure( connect(attr, SIGNAL(attributeChanged(float)), object, slot ) );
         return attr;
     }
 
@@ -379,7 +380,7 @@ public:
             m_checkbox->setChecked( !(*m_value) );
             m_checkbox->click();
         }
-        assert( connect(checkbox, SIGNAL(clicked(bool)), this, SLOT(valueChanged(bool))) );
+        ensure( connect(checkbox, SIGNAL(clicked(bool)), this, SLOT(valueChanged(bool))) );
     }
 
     static CheckboxBoolAttribute* bindBool( QCheckBox *checkbox, bool *value, QObject *parent )
@@ -390,14 +391,14 @@ public:
     static CheckboxBoolAttribute* bindSlot( QCheckBox *checkbox, QObject *object, const char *slot )
     {
         CheckboxBoolAttribute *attr = new CheckboxBoolAttribute( checkbox, NULL, object );
-        assert( connect(attr, SIGNAL(attributedChanged(bool)), object, slot) );
+        ensure( connect(attr, SIGNAL(attributedChanged(bool)), object, slot) );
         return attr;
     }
 
     static CheckboxBoolAttribute* bindBoolAndSlot( QCheckBox *checkbox, bool *value, QObject *object, const char *slot )
     {
         CheckboxBoolAttribute *attr = new CheckboxBoolAttribute( checkbox, value, object );
-        assert( connect(attr, SIGNAL(attributedChanged(bool)), object, slot) );
+        ensure( connect(attr, SIGNAL(attributedChanged(bool)), object, slot) );
         return attr;
     }
 
@@ -442,7 +443,7 @@ public:
         if ( m_value ) {
             m_combo->setCurrentIndex( *m_value );
         }
-        assert( connect(m_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(valueChanged(int))) );
+        ensure( connect(m_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(valueChanged(int))) );
     }
 
     static ComboIntAttribute* bindInt( QComboBox *combo, int *value, QObject *parent )
@@ -453,14 +454,14 @@ public:
     static ComboIntAttribute* bindSlot( QComboBox *combo, QObject *object, const char *slot )
     {
         ComboIntAttribute *attr = new ComboIntAttribute( combo, NULL, object );
-        assert( connect(attr, SIGNAL(attributeChanged(int)), object, slot) );
+        ensure( connect(attr, SIGNAL(attributeChanged(int)), object, slot) );
         return attr;
     }
 
     static ComboIntAttribute* bindIntAndSlot( QComboBox *combo, int *value, QObject *object, const char *slot )
     {
         ComboIntAttribute *attr = new ComboIntAttribute( combo, value, object );
-        assert( connect(attr, SIGNAL(attributeChanged(int)), object, slot) );
+        ensure( connect(attr, SIGNAL(attributeChanged(int)), object, slot) );
         return attr;
     }
 

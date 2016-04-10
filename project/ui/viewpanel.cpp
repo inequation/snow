@@ -15,6 +15,7 @@
 #include "ui/viewpanel.h"
 
 #include "common/common.h"
+#include "common/ensure.h"
 #include "ui/userinput.h"
 #include "viewport/viewport.h"
 #include "io/objparser.h"
@@ -124,7 +125,7 @@ ViewPanel::initializeGL()
     m_infoPanel->setInfo( "Particles", "0" );
 
     // Render ticker
-    assert( connect(&m_ticker, SIGNAL(timeout()), this, SLOT(update())) );
+    ensure( connect(&m_ticker, SIGNAL(timeout()), this, SLOT(update())) );
     m_ticker.start( 1000/FPS );
     m_timer.start();
 }
