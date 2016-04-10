@@ -8,7 +8,7 @@
 **
 **************************************************************************/
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 #ifndef GLM_FORCE_RADIANS
     #define GLM_FORCE_RADIANS
@@ -229,7 +229,7 @@ MoveTool::buildVBO()
 
     // Cone
     static const int resolution = 60;
-    static const float dTheta = 2.f*M_PI/resolution;
+    static const float dTheta = 2.f*(float)M_PI/resolution;
     static const float coneHeight = 0.1f;
     static const float coneRadius = 0.05f;
     for ( int i = 0; i < resolution; ++i ) {

@@ -11,7 +11,6 @@
 #include "sim/particlesystem.h"
 
 #include <GL/glew.h>
-#include <GL/gl.h>
 #include <QGLShaderProgram>
 
 #include "common/common.h"

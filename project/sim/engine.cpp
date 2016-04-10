@@ -8,7 +8,7 @@
 **
 **************************************************************************/
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 #include "common/common.h"
 #include "io/mitsubaexporter.h"

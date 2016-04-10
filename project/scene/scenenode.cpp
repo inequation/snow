@@ -8,7 +8,7 @@
 **
 **************************************************************************/
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 #ifndef GLM_FORCE_RADIANS
     #define GLM_FORCE_RADIANS

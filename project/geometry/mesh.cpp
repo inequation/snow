@@ -10,7 +10,9 @@
 
 #include "mesh.h"
 
-#include <GL/gl.h>
+#include <GL/glew.h>
+
+#include <math.h>
 
 #ifndef GLM_FORCE_RADIANS
     #define GLM_FORCE_RADIANS
@@ -315,7 +317,7 @@ Mesh::deleteVBO()
 void
 Mesh::renderVelVBO()
 {
-    float scale_constant = .01;
+    float scale_constant = .01f;
     if ( !hasVBO() ) buildVBO();
 
     glPushAttrib( GL_DEPTH_BUFFER_BIT );
@@ -427,7 +429,7 @@ void Mesh::buildVelVBO()
     // Cone
     if(m_velMag != 0) {
         static const int resolution = 60;
-        static const float dTheta = 2.f*M_PI/resolution;
+        static const float dTheta = 2.f*(float)M_PI/resolution;
         static const float coneHeight = 0.1f*scale_factor;
         static const float coneRadius = 0.05f*scale_factor;
         for ( int i = 0; i < resolution; ++i ) {

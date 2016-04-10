@@ -8,7 +8,7 @@
 **
 **************************************************************************/
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 #include <QVector>
 
@@ -202,7 +202,7 @@ RotateTool::buildVBO()
     QVector<vec3> data;
 
     static const int resolution = 60;
-    static const float dTheta = 2.f*M_PI/resolution;
+    static const float dTheta = 2.f*(float)M_PI/resolution;
     for ( int i = 0; i < resolution; ++i )
         data += vec3( cosf(i*dTheta), 0.f, -sinf(i*dTheta) );
 

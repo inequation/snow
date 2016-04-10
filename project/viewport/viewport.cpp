@@ -10,7 +10,7 @@
 
 #include "viewport.h"
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 #include "common/common.h"
 #include "ui/userinput.h"
@@ -32,7 +32,7 @@ Viewport::Viewport()
     m_width = 1000;
     m_height = 1000;
     m_camera->setClip( 0.01f, 1000.f );
-    m_camera->setHeightAngle( M_PI/6.f );
+    m_camera->setHeightAngle( (float)M_PI/6.f );
 }
 
 Viewport::~Viewport()

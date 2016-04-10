@@ -8,7 +8,7 @@
 **
 **************************************************************************/
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 #ifndef GLM_FORCE_RADIANS
     #define GLM_FORCE_RADIANS
@@ -252,7 +252,7 @@ ScaleTool::buildVBO()
     data += vec3( 0, 1, 0 );
 
     static const int resolution = 60;
-    static const float dAngle = 2.f*M_PI/resolution;
+    static const float dAngle = 2.f*(float)M_PI/resolution;
 
     vec3 center = vec3( 0, 1-m_radius, 0 );
 

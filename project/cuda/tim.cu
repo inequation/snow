@@ -11,6 +11,8 @@
 #ifndef TIM_CU
 #define TIM_CU
 
+#include <GL/glew.h>
+
 #include <cuda.h>
 #include <cuda_runtime.h>
 #include <cuda_gl_interop.h>
