@@ -13,8 +13,12 @@
 
 #include "common/renderable.h"
 
-struct BBox;
-struct Mesh;
+#if _MSC_VER < 1900
+#define constexpr
+#endif
+
+class BBox;
+class Mesh;
 struct ImplicitCollider;
 
 class SceneCollider : public Renderable {

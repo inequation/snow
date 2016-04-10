@@ -18,6 +18,9 @@
 #include "glm/vec3.hpp"
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#ifdef _MSC_VER
+	#include <math.h>
+#endif
 
 class Camera
 {
@@ -29,7 +32,7 @@ public:
         m_aspect = 1.f;
         m_near = 0.01f;
         m_far = 1e6;
-        m_heightAngle = M_PI/3.f;
+        m_heightAngle = (float)M_PI/3.f;
         updateProjectionMatrix();
         orient( glm::vec3(1, 1, 1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0) );
     }
@@ -62,7 +65,7 @@ public:
 
     float getNear() const { return m_near; }
     float getFar() const { return m_far; }
-    void setClip( float near, float far ) { m_near = near; m_far = far; updateProjectionMatrix(); }
+    void setClip( float nearClip, float farClip ) { m_near = nearClip; m_far = farClip; updateProjectionMatrix(); }
 
     float getHeightAngle() const { return m_heightAngle; }
     void setHeightAngle( float radians ) { m_heightAngle = radians; updateProjectionMatrix(); }

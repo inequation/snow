@@ -31,6 +31,41 @@
 #define EQF(a, b) ( fabsf((a) - (b)) < _EPSILON_ )
 #define NEQF(a, b) ( fabsf((a) - (b)) > _EPSILON_ )
 
+#if _MSC_VER
+#ifdef __CUDACC__
+	#define INLINE_TEMPLATE_FLAGS	__host__ __device__ __forceinline__
+#else
+	#define INLINE_TEMPLATE_FLAGS	static inline
+#endif
+
+#ifdef MIN
+#undef MIN
+#endif
+
+template<typename T> INLINE_TEMPLATE_FLAGS T MIN(T X, T Y)
+{
+	return X < Y ? X : Y;
+}
+
+#ifdef MAX
+#undef MAX
+#endif
+
+template<typename T> INLINE_TEMPLATE_FLAGS T MAX(T X, T Y)
+{
+	return X > Y ? X : Y;
+}
+
+inline float MAX(float X, int Y)
+{
+	return MAX(X, (float)Y);
+}
+
+template<typename T> INLINE_TEMPLATE_FLAGS T CLAMP( T VALUE, T A, T B )
+{
+	return (VALUE < A) ? A : (VALUE > B) ? B : VALUE;
+};
+#else
 #ifdef MIN
 #undef MIN
 #endif
@@ -60,6 +95,7 @@
     __typeof__ (B) _B_ = (B);                           \
     ((_V_ < _A_) ? _A_ : ((_V_ > _B_) ? _B_ : _V_));    \
 })
+#endif
 
 static inline float urand( float min = 0.f, float max = 1.f )
 {

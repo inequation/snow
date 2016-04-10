@@ -15,7 +15,10 @@
 #include <stdlib.h>
 #include <iostream>
 #include <time.h>
-#include <sys/time.h>
+#if _WIN32 || _WIN64
+#else
+	#include <sys/time.h>
+#endif
 
 #define SAFE_DELETE(MEM)                \
     {                                   \
@@ -34,6 +37,30 @@
     }
 
 #ifndef QT_NO_DEBUG
+	#if _MSC_VER
+	#define WIN32_LEAN_AND_MEAN
+	#include <Windows.h>
+	#include <winsock.h>	// for timeval
+	static int gettimeofday(struct timeval * tp, struct timezone * tzp)
+	{
+		/* FILETIME of Jan 1 1970 00:00:00. */
+		static const unsigned __int64 epoch = ((unsigned __int64) 116444736000000000ULL);
+
+		FILETIME    file_time;
+		SYSTEMTIME  system_time;
+		ULARGE_INTEGER ularge;
+
+		GetSystemTime(&system_time);
+		SystemTimeToFileTime(&system_time, &file_time);
+		ularge.LowPart = file_time.dwLowDateTime;
+		ularge.HighPart = file_time.dwHighDateTime;
+
+		tp->tv_sec = (long) ((ularge.QuadPart - epoch) / 10000000L);
+		tp->tv_usec = (long) (system_time.wMilliseconds * 1000);
+
+		return 0;
+	}
+	#endif
     #define LOG(...) {                                  \
         time_t rawtime;                                 \
         struct tm *timeinfo;                            \

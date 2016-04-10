@@ -24,12 +24,20 @@
  * still get some weight, and any particles further than that get
  * weight =0
  */
+#if _MSC_VER
+template <typename T> __host__ __device__ __forceinline__ T N(T _d)
+{
+	return T( ( 0 <= _d && _d < 1 ) * ( .5*_d*_d*_d - _d*_d + 2.f/3.f ) +
+		( 1 <= _d && _d < 2 ) * ( -1.f/6.f*_d*_d*_d + _d*_d - 2*_d + 4.f/3.f ) );
+}
+#else
 #define N( d )                                                                      \
 ({                                                                                  \
     __typeof__ (d) _d = (d);                                                        \
    ( ( 0 <= _d && _d < 1 ) * ( .5*_d*_d*_d - _d*_d + 2.f/3.f ) +                    \
      ( 1 <= _d && _d < 2 ) * ( -1.f/6.f*_d*_d*_d + _d*_d - 2*_d + 4.f/3.f ) );      \
-})                                                                                  \
+})
+#endif
 
 /*
  * sets w = interpolation weights (w_ip)
@@ -56,12 +64,20 @@ __host__ __device__ __forceinline__ float weight( vec3 &dx)
 /*
  * derivative of N with respect to d
  */
+#if _MSC_VER
+template <typename T> __host__ __device__ __forceinline__ T Nd(T _d)
+{
+	return T( ( 0 <= _d && _d < 1 ) * ( 1.5f*_d*_d - 2*_d ) +
+		( 1 <= _d && _d < 2 ) * ( -.5*_d*_d + 2*_d - 2 ) );
+}
+#else
 #define Nd( d )                                                                    \
 ({                                                                                 \
     __typeof__ (d) _d = (d);                                                       \
     ( ( 0 <= _d && _d < 1 ) * ( 1.5f*_d*_d - 2*_d ) +                              \
       ( 1 <= _d && _d < 2 ) * ( -.5*_d*_d + 2*_d - 2 ) );                          \
-})                                                                                 \
+})
+#endif
 
 /*
  * returns gradient of interpolation weights  \grad{w_ip}
@@ -71,21 +87,21 @@ __host__ __device__ __forceinline__ float weight( vec3 &dx)
 __host__ __device__ __forceinline__ void weightGradient( const vec3 &sdx, const vec3 &dx, float h, vec3 &wg )
 {
     const vec3 dx_h = dx / h;
-    const vec3 N = vec3( N(dx_h.x), N(dx_h.y), N(dx_h.z) );
-    const vec3 Nx = sdx * vec3( Nd(dx_h.x), Nd(dx_h.y), Nd(dx_h.z) );
-    wg.x = Nx.x * N.y * N.z;
-    wg.y = N.x  * Nx.y* N.z;
-    wg.z = N.x  * N.y * Nx.z;
+    const vec3 vN = vec3( N(dx_h.x), N(dx_h.y), N(dx_h.z) );
+    const vec3 vNx = sdx * vec3( Nd(dx_h.x), Nd(dx_h.y), Nd(dx_h.z) );
+    wg.x = vNx.x * vN.y * vN.z;
+    wg.y = vN.x  * vNx.y* vN.z;
+    wg.z = vN.x  * vN.y * vNx.z;
 }
 
 // Same as above, but dx is already normalized with h
 __host__ __device__ __forceinline__ void weightGradient( const vec3 &sdx, const vec3 &dx, vec3 &wg )
 {
-    const vec3 N = vec3( N(dx.x), N(dx.y), N(dx.z) );
-    const vec3 Nx = sdx * vec3( Nd(dx.x), Nd(dx.y), Nd(dx.z) );
-    wg.x = Nx.x * N.y * N.z;
-    wg.y = N.x  * Nx.y* N.z;
-    wg.z = N.x  * N.y * Nx.z;
+    const vec3 vN = vec3( N(dx.x), N(dx.y), N(dx.z) );
+    const vec3 vNx = sdx * vec3( Nd(dx.x), Nd(dx.y), Nd(dx.z) );
+    wg.x = vNx.x * vN.y * vN.z;
+    wg.y = vN.x  * vNx.y* vN.z;
+    wg.z = vN.x  * vN.y * vNx.z;
 }
 
 // Same as above, but dx is not already absolute-valued
@@ -93,11 +109,11 @@ __host__ __device__ __forceinline__ void weightGradient( const vec3 &dx, vec3 &w
 {
     const vec3 sdx = vec3::sign( dx );
     const vec3 adx = vec3::abs( dx );
-    const vec3 N = vec3( N(adx.x), N(adx.y), N(adx.z) );
-    const vec3 Nx = sdx * vec3( Nd(adx.x), Nd(adx.y), Nd(adx.z) );
-    wg.x = Nx.x * N.y * N.z;
-    wg.y = N.x  * Nx.y* N.z;
-    wg.z = N.x  * N.y * Nx.z;
+    const vec3 vN = vec3( N(adx.x), N(adx.y), N(adx.z) );
+    const vec3 vNx = sdx * vec3( Nd(adx.x), Nd(adx.y), Nd(adx.z) );
+    wg.x = vNx.x * vN.y * vN.z;
+    wg.y = vN.x  * vNx.y* vN.z;
+    wg.z = vN.x  * vN.y * vNx.z;
 }
 
 /*
@@ -106,23 +122,23 @@ __host__ __device__ __forceinline__ void weightGradient( const vec3 &dx, vec3 &w
 __host__ __device__ __forceinline__ void weightAndGradient( const vec3 &sdx, const vec3 &dx, float h, float &w, vec3 &wg )
 {
     const vec3 dx_h = dx / h;
-    const vec3 N = vec3( N(dx_h.x), N(dx_h.y), N(dx_h.z) );
-    w = N.x * N.y * N.z;
-    const vec3 Nx = sdx * vec3( Nd(dx_h.x), Nd(dx_h.y), Nd(dx_h.z) );
-    wg.x = Nx.x * N.y * N.z;
-    wg.y = N.x  * Nx.y* N.z;
-    wg.z = N.x  * N.y * Nx.z;
+    const vec3 vN = vec3( N(dx_h.x), N(dx_h.y), N(dx_h.z) );
+    w = vN.x * vN.y * vN.z;
+    const vec3 vNx = sdx * vec3( Nd(dx_h.x), Nd(dx_h.y), Nd(dx_h.z) );
+    wg.x = vNx.x * vN.y * vN.z;
+    wg.y = vN.x  * vNx.y* vN.z;
+    wg.z = vN.x  * vN.y * vNx.z;
 }
 
 // Same as above, but dx is already normalized with h
 __host__ __device__ __forceinline__ void weightAndGradient( const vec3 &sdx, const vec3 &dx, float &w, vec3 &wg )
 {
-    const vec3 N = vec3( N(dx.x), N(dx.y), N(dx.z) );
-    w = N.x * N.y * N.z;
-    const vec3 Nx = sdx * vec3( Nd(dx.x), Nd(dx.y), Nd(dx.z) );
-    wg.x = Nx.x * N.y * N.z;
-    wg.y = N.x  * Nx.y* N.z;
-    wg.z = N.x  * N.y * Nx.z;
+    const vec3 vN = vec3( N(dx.x), N(dx.y), N(dx.z) );
+    w = vN.x * vN.y * vN.z;
+    const vec3 vNx = sdx * vec3( Nd(dx.x), Nd(dx.y), Nd(dx.z) );
+    wg.x = vNx.x * vN.y * vN.z;
+    wg.y = vN.x  * vNx.y* vN.z;
+    wg.z = vN.x  * vN.y * vNx.z;
 }
 
 // Same as above, but dx is not already absolute-valued
@@ -130,12 +146,12 @@ __host__ __device__ __forceinline__ void weightAndGradient( const vec3 &dx, floa
 {
     const vec3 sdx = vec3::sign( dx );
     const vec3 adx = vec3::abs( dx );
-    const vec3 N = vec3( N(adx.x), N(adx.y), N(adx.z) );
-    w = N.x * N.y * N.z;
-    const vec3 Nx = sdx * vec3( Nd(adx.x), Nd(adx.y), Nd(adx.z) );
-    wg.x = Nx.x * N.y * N.z;
-    wg.y = N.x  * Nx.y* N.z;
-    wg.z = N.x  * N.y * Nx.z;
+    const vec3 vN = vec3( N(adx.x), N(adx.y), N(adx.z) );
+    w = vN.x * vN.y * vN.z;
+    const vec3 vNx = sdx * vec3( Nd(adx.x), Nd(adx.y), Nd(adx.z) );
+    wg.x = vNx.x * vN.y * vN.z;
+    wg.y = vN.x  * vNx.y* vN.z;
+    wg.z = vN.x  * vN.y * vNx.z;
 }
 
 #endif // WEIGHTING_H

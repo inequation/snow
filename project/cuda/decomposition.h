@@ -88,6 +88,19 @@ __host__ __device__ __forceinline__ void jacobiEigenanalysis( mat3 &S, quat &qV 
     jacobiConjugation( 2, 0, 1, S, qV );
 }
 
+#if _MSC_VER
+template <typename T> __host__ __device__ __forceinline__ void condSwap(bool COND, T X, T Y)
+{
+	X = COND ? Y : X;
+	Y = COND ? X : Y;
+}
+
+template <typename T> __host__ __device__ __forceinline__ void condNegSwap(bool COND, T X, T Y)
+{
+	X = COND ? Y : X;
+	Y = COND ? -X : Y;
+}
+#else
 #define condSwap( COND, X, Y )          \
 {                                       \
     __typeof__ (X) _X_ = X;             \
@@ -101,6 +114,7 @@ __host__ __device__ __forceinline__ void jacobiEigenanalysis( mat3 &S, quat &qV 
     X = COND ? Y : X;                   \
     Y = COND ? _X_ : Y;                 \
 }
+#endif
 
 __host__ __device__ __forceinline__ void sortSingularValues( mat3 &B, mat3 &V )
 {

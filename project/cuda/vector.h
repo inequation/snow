@@ -28,6 +28,11 @@
 
 #include "common/math.h"
 
+#ifdef _MSC_VER
+#define __isnanf	isnan
+#define __isinff	isinf
+#endif
+
 struct vec3
 {
     union {
@@ -102,7 +107,7 @@ struct vec3
 
     //From http://stackoverflow.com/questions/1903954/is-there-a-standard-sign-function-signum-sgn-in-c-c
     __host__ __device__ __forceinline__
-    static float sign( const float v ) { return (0 < v) - (v < 0);}
+    static float sign( const float v ) { return (float)((0 < v) - (v < 0));}
 
     //From http://stackoverflow.com/questions/1903954/is-there-a-standard-sign-function-signum-sgn-in-c-c
     __host__ __device__ __forceinline__
@@ -175,7 +180,7 @@ struct vec3
     vec3 operator * ( double d ) const { return vec3( (float)(x*d), (float)(y*d), (float)(z*d) ); }
 
     __host__ __device__ __forceinline__
-    vec3& operator /= ( float f ) { float fi = 1./f; x *= fi; y *= fi; z *= fi; return *this; }
+    vec3& operator /= ( float f ) { float fi = 1.f/f; x *= fi; y *= fi; z *= fi; return *this; }
 
     __host__ __device__ __forceinline__
     vec3 operator / ( float f ) const { float fi = 1.f/f; return vec3( x*fi, y*fi, z*fi ); }
