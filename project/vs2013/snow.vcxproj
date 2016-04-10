@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C3CABD95-D003-4DAF-B4EE-6267B2C7876E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>snow</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\extras\visual_studio_integration\MSBuildExtensions\CUDA 7.5.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <CustomBuildBeforeTargets>ClCompile</CustomBuildBeforeTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <CustomBuildBeforeTargets>ClCompile</CustomBuildBeforeTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <CustomBuildBeforeTargets>ClCompile</CustomBuildBeforeTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <CustomBuildBeforeTargets>ClCompile</CustomBuildBeforeTargets>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);GL_GLEXT_PROTOTYPES;GL_GLEXT_PROTOTYPES;PROJECT_PATH=".";_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;GLEW_STATIC;NOMINMAX</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Qt\5.6\msvc2015_64\include;D:\Qt\5.6\msvc2015_64\include\QtCore;D:\Qt\5.6\msvc2015_64\include\QtGui;D:\Qt\5.6\msvc2015_64\include\QtWidgets;D:\Qt\5.6\msvc2015_64\include\QtOpenGL;D:\Qt\5.6\msvc2015_64\include\QtXml;D:\glm;D:\glm\glm\gtc;D:\glew-1.13.0\include;C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\inc;$(ProjectDir)\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\Qt\5.6\msvc2013_64\lib;D:\glew-1.13.0\lib\Release\x64;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;Qt5OpenGLd.lib;Qt5Xmld.lib;glew32s.lib;opengl32.lib;cudart.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <CustomBuildStep>
+      <Command>"D:\Qt\5.6\msvc2013_64\bin\rcc.exe" -o $(ProjectDir)..\qrc_application.cpp $(ProjectDir)..\resources\icons\icons.qrc $(ProjectDir)..\resources\shaders\shaders.qrc
+
+"D:\Qt\5.6\msvc2013_64\bin\uic.exe" -o $(ProjectDir)..\ui\ui_mainwindow.h $(ProjectDir)..\ui\mainwindow.ui
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\sim\moc_engine.cpp $(ProjectDir)..\sim\engine.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_collapsiblebox.cpp $(ProjectDir)..\ui\collapsiblebox.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_databinding.cpp $(ProjectDir)..\ui\databinding.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_mainwindow.cpp $(ProjectDir)..\ui\mainwindow.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_viewpanel.cpp $(ProjectDir)..\ui\viewpanel.h</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>Qt processing</Message>
+      <Outputs>$(ProjectDir)..\qrc_application.cpp;$(ProjectDir)..\ui\ui_mainwindow.h;$(ProjectDir)..\sim\moc_engine.cpp;$(ProjectDir)..\ui\moc_collapsiblebox.cpp;$(ProjectDir)..\ui\moc_databinding.cpp;$(ProjectDir)..\ui\moc_viewpanel.cpp</Outputs>
+      <Inputs>$(ProjectDir)..\resources\icons\icons.qrc;$(ProjectDir)..\resources\shaders\shaders.qrc;$(ProjectDir)..\ui\mainwindow.ui;$(ProjectDir)..\sim\engine.h;$(ProjectDir)..\ui\collapsiblebox.h;$(ProjectDir)..\ui\databinding.h;$(ProjectDir)..\ui\viewpanel.h</Inputs>
+    </CustomBuildStep>
+    <CudaCompile>
+      <CodeGeneration>compute_20,sm_21</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);GL_GLEXT_PROTOTYPES;GL_GLEXT_PROTOTYPES;PROJECT_PATH=".";_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;GLEW_STATIC;NOMINMAX</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Qt\5.6\msvc2015_64\include;D:\Qt\5.6\msvc2015_64\include\QtCore;D:\Qt\5.6\msvc2015_64\include\QtGui;D:\Qt\5.6\msvc2015_64\include\QtWidgets;D:\Qt\5.6\msvc2015_64\include\QtOpenGL;D:\Qt\5.6\msvc2015_64\include\QtXml;D:\glm;D:\glm\glm\gtc;D:\glew-1.13.0\include;C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\inc;$(ProjectDir)\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\Qt\5.6\msvc2013_64\lib;D:\glew-1.13.0\lib\Release\x64;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;Qt5OpenGLd.lib;Qt5Xmld.lib;glew32s.lib;opengl32.lib;cudart.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <CustomBuildStep>
+      <Command>"D:\Qt\5.6\msvc2013_64\bin\rcc.exe" -o $(ProjectDir)..\qrc_application.cpp $(ProjectDir)..\resources\icons\icons.qrc $(ProjectDir)..\resources\shaders\shaders.qrc
+
+"D:\Qt\5.6\msvc2013_64\bin\uic.exe" -o $(ProjectDir)..\ui\ui_mainwindow.h $(ProjectDir)..\ui\mainwindow.ui
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\sim\moc_engine.cpp $(ProjectDir)..\sim\engine.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_collapsiblebox.cpp $(ProjectDir)..\ui\collapsiblebox.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_databinding.cpp $(ProjectDir)..\ui\databinding.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_mainwindow.cpp $(ProjectDir)..\ui\mainwindow.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_viewpanel.cpp $(ProjectDir)..\ui\viewpanel.h</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>Qt processing</Message>
+      <Outputs>$(ProjectDir)..\qrc_application.cpp;$(ProjectDir)..\ui\ui_mainwindow.h;$(ProjectDir)..\sim\moc_engine.cpp;$(ProjectDir)..\ui\moc_collapsiblebox.cpp;$(ProjectDir)..\ui\moc_databinding.cpp;$(ProjectDir)..\ui\moc_viewpanel.cpp</Outputs>
+      <Inputs>$(ProjectDir)..\resources\icons\icons.qrc;$(ProjectDir)..\resources\shaders\shaders.qrc;$(ProjectDir)..\ui\mainwindow.ui;$(ProjectDir)..\sim\engine.h;$(ProjectDir)..\ui\collapsiblebox.h;$(ProjectDir)..\ui\databinding.h;$(ProjectDir)..\ui\viewpanel.h</Inputs>
+    </CustomBuildStep>
+    <CudaCompile>
+      <CodeGeneration>compute_20,sm_21</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);GL_GLEXT_PROTOTYPES;GL_GLEXT_PROTOTYPES;PROJECT_PATH=".";_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;GLEW_STATIC;NOMINMAX</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Qt\5.6\msvc2015_64\include;D:\Qt\5.6\msvc2015_64\include\QtCore;D:\Qt\5.6\msvc2015_64\include\QtGui;D:\Qt\5.6\msvc2015_64\include\QtWidgets;D:\Qt\5.6\msvc2015_64\include\QtOpenGL;D:\Qt\5.6\msvc2015_64\include\QtXml;D:\glm;D:\glm\glm\gtc;D:\glew-1.13.0\include;C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\inc;$(ProjectDir)\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\Qt\5.6\msvc2013_64\lib;D:\glew-1.13.0\lib\Release\x64;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5OpenGL.lib;Qt5Xml.lib;glew32s.lib;opengl32.lib;cudart.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <CustomBuildStep>
+      <Command>"D:\Qt\5.6\msvc2013_64\bin\rcc.exe" -o $(ProjectDir)..\qrc_application.cpp $(ProjectDir)..\resources\icons\icons.qrc $(ProjectDir)..\resources\shaders\shaders.qrc
+
+"D:\Qt\5.6\msvc2013_64\bin\uic.exe" -o $(ProjectDir)..\ui\ui_mainwindow.h $(ProjectDir)..\ui\mainwindow.ui
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\sim\moc_engine.cpp $(ProjectDir)..\sim\engine.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_collapsiblebox.cpp $(ProjectDir)..\ui\collapsiblebox.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_databinding.cpp $(ProjectDir)..\ui\databinding.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_mainwindow.cpp $(ProjectDir)..\ui\mainwindow.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_viewpanel.cpp $(ProjectDir)..\ui\viewpanel.h</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>Qt processing</Message>
+      <Outputs>$(ProjectDir)..\qrc_application.cpp;$(ProjectDir)..\ui\ui_mainwindow.h;$(ProjectDir)..\sim\moc_engine.cpp;$(ProjectDir)..\ui\moc_collapsiblebox.cpp;$(ProjectDir)..\ui\moc_databinding.cpp;$(ProjectDir)..\ui\moc_viewpanel.cpp</Outputs>
+      <Inputs>$(ProjectDir)..\resources\icons\icons.qrc;$(ProjectDir)..\resources\shaders\shaders.qrc;$(ProjectDir)..\ui\mainwindow.ui;$(ProjectDir)..\sim\engine.h;$(ProjectDir)..\ui\collapsiblebox.h;$(ProjectDir)..\ui\databinding.h;$(ProjectDir)..\ui\viewpanel.h</Inputs>
+    </CustomBuildStep>
+    <CudaCompile>
+      <CodeGeneration>compute_20,sm_21</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);GL_GLEXT_PROTOTYPES;GL_GLEXT_PROTOTYPES;PROJECT_PATH=".";_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;GLEW_STATIC;NOMINMAX</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Qt\5.6\msvc2015_64\include;D:\Qt\5.6\msvc2015_64\include\QtCore;D:\Qt\5.6\msvc2015_64\include\QtGui;D:\Qt\5.6\msvc2015_64\include\QtWidgets;D:\Qt\5.6\msvc2015_64\include\QtOpenGL;D:\Qt\5.6\msvc2015_64\include\QtXml;D:\glm;D:\glm\glm\gtc;D:\glew-1.13.0\include;C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\inc;$(ProjectDir)\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\Qt\5.6\msvc2013_64\lib;D:\glew-1.13.0\lib\Release\x64;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5OpenGL.lib;Qt5Xml.lib;glew32s.lib;opengl32.lib;cudart.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <CustomBuildStep>
+      <Command>"D:\Qt\5.6\msvc2013_64\bin\rcc.exe" -o $(ProjectDir)..\qrc_application.cpp $(ProjectDir)..\resources\icons\icons.qrc $(ProjectDir)..\resources\shaders\shaders.qrc
+
+"D:\Qt\5.6\msvc2013_64\bin\uic.exe" -o $(ProjectDir)..\ui\ui_mainwindow.h $(ProjectDir)..\ui\mainwindow.ui
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\sim\moc_engine.cpp $(ProjectDir)..\sim\engine.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_collapsiblebox.cpp $(ProjectDir)..\ui\collapsiblebox.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_databinding.cpp $(ProjectDir)..\ui\databinding.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_mainwindow.cpp $(ProjectDir)..\ui\mainwindow.h
+
+"D:\Qt\5.6\msvc2013_64\bin\moc.exe" -o $(ProjectDir)..\ui\moc_viewpanel.cpp $(ProjectDir)..\ui\viewpanel.h</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>Qt processing</Message>
+      <Outputs>$(ProjectDir)..\qrc_application.cpp;$(ProjectDir)..\ui\ui_mainwindow.h;$(ProjectDir)..\sim\moc_engine.cpp;$(ProjectDir)..\ui\moc_collapsiblebox.cpp;$(ProjectDir)..\ui\moc_databinding.cpp;$(ProjectDir)..\ui\moc_viewpanel.cpp</Outputs>
+      <Inputs>$(ProjectDir)..\resources\icons\icons.qrc;$(ProjectDir)..\resources\shaders\shaders.qrc;$(ProjectDir)..\ui\mainwindow.ui;$(ProjectDir)..\sim\engine.h;$(ProjectDir)..\ui\collapsiblebox.h;$(ProjectDir)..\ui\databinding.h;$(ProjectDir)..\ui\viewpanel.h</Inputs>
+    </CustomBuildStep>
+    <CudaCompile>
+      <CodeGeneration>compute_20,sm_21</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\geometry\bbox.cpp" />
+    <ClCompile Include="..\geometry\mesh.cpp" />
+    <ClCompile Include="..\io\mitsubaexporter.cpp" />
+    <ClCompile Include="..\io\objparser.cpp" />
+    <ClCompile Include="..\io\sceneio.cpp" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\main_console.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\qrc_application.cpp" />
+    <ClCompile Include="..\scene\scene.cpp" />
+    <ClCompile Include="..\scene\scenecollider.cpp" />
+    <ClCompile Include="..\scene\scenegrid.cpp" />
+    <ClCompile Include="..\scene\scenenode.cpp" />
+    <ClCompile Include="..\sim\engine.cpp" />
+    <ClCompile Include="..\sim\implicitcollider.cpp" />
+    <ClCompile Include="..\sim\moc_engine.cpp" />
+    <ClCompile Include="..\sim\particlegrid.cpp" />
+    <ClCompile Include="..\sim\particlesystem.cpp" />
+    <ClCompile Include="..\tests\tests.cpp" />
+    <ClCompile Include="..\ui\collapsiblebox.cpp" />
+    <ClCompile Include="..\ui\infopanel.cpp" />
+    <ClCompile Include="..\ui\mainwindow.cpp" />
+    <ClCompile Include="..\ui\moc_collapsiblebox.cpp" />
+    <ClCompile Include="..\ui\moc_databinding.cpp" />
+    <ClCompile Include="..\ui\moc_mainwindow.cpp" />
+    <ClCompile Include="..\ui\moc_viewpanel.cpp" />
+    <ClCompile Include="..\ui\picker.cpp" />
+    <ClCompile Include="..\ui\tools\movetool.cpp" />
+    <ClCompile Include="..\ui\tools\rotatetool.cpp" />
+    <ClCompile Include="..\ui\tools\scaletool.cpp" />
+    <ClCompile Include="..\ui\tools\selectiontool.cpp" />
+    <ClCompile Include="..\ui\tools\tool.cpp" />
+    <ClCompile Include="..\ui\tools\velocitytool.cpp" />
+    <ClCompile Include="..\ui\uisettings.cpp" />
+    <ClCompile Include="..\ui\userinput.cpp" />
+    <ClCompile Include="..\ui\viewpanel.cpp" />
+    <ClCompile Include="..\viewport\viewport.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\common.h" />
+    <ClInclude Include="..\common\math.h" />
+    <ClInclude Include="..\common\renderable.h" />
+    <ClInclude Include="..\common\types.h" />
+    <ClInclude Include="..\cuda\atomic.h" />
+    <ClInclude Include="..\cuda\collider.h" />
+    <ClInclude Include="..\cuda\decomposition.h" />
+    <ClInclude Include="..\cuda\functions.h" />
+    <ClInclude Include="..\cuda\helpers.h" />
+    <ClInclude Include="..\cuda\implicit.h" />
+    <ClInclude Include="..\cuda\matrix.h" />
+    <ClInclude Include="..\cuda\noise.h" />
+    <ClInclude Include="..\cuda\quaternion.h" />
+    <ClInclude Include="..\cuda\snowtypes.h" />
+    <ClInclude Include="..\cuda\vector.h" />
+    <ClInclude Include="..\cuda\weighting.h" />
+    <ClInclude Include="..\geometry\bbox.h" />
+    <ClInclude Include="..\geometry\grid.h" />
+    <ClInclude Include="..\geometry\mesh.h" />
+    <ClInclude Include="..\io\mitsubaexporter.h" />
+    <ClInclude Include="..\io\objparser.h" />
+    <ClInclude Include="..\io\sceneio.h" />
+    <ClInclude Include="..\scene\scene.h" />
+    <ClInclude Include="..\scene\scenecollider.h" />
+    <ClInclude Include="..\scene\scenegrid.h" />
+    <ClInclude Include="..\scene\scenenode.h" />
+    <ClInclude Include="..\scene\scenenodeiterator.h" />
+    <ClInclude Include="..\sim\caches.h" />
+    <ClInclude Include="..\sim\engine.h" />
+    <ClInclude Include="..\sim\implicitcollider.h" />
+    <ClInclude Include="..\sim\material.h" />
+    <ClInclude Include="..\sim\particle.h" />
+    <ClInclude Include="..\sim\particlegrid.h" />
+    <ClInclude Include="..\sim\particlegridnode.h" />
+    <ClInclude Include="..\sim\particlesystem.h" />
+    <ClInclude Include="..\tests\tests.h" />
+    <ClInclude Include="..\ui\collapsiblebox.h" />
+    <ClInclude Include="..\ui\databinding.h" />
+    <ClInclude Include="..\ui\infopanel.h" />
+    <ClInclude Include="..\ui\mainwindow.h" />
+    <ClInclude Include="..\ui\picker.h" />
+    <ClInclude Include="..\ui\tools\movetool.h" />
+    <ClInclude Include="..\ui\tools\rotatetool.h" />
+    <ClInclude Include="..\ui\tools\scaletool.h" />
+    <ClInclude Include="..\ui\tools\selectiontool.h" />
+    <ClInclude Include="..\ui\tools\tool.h" />
+    <ClInclude Include="..\ui\tools\Tools.h" />
+    <ClInclude Include="..\ui\tools\velocitytool.h" />
+    <ClInclude Include="..\ui\uisettings.h" />
+    <ClInclude Include="..\ui\userinput.h" />
+    <ClInclude Include="..\ui\viewpanel.h" />
+    <ClInclude Include="..\viewport\camera.h" />
+    <ClInclude Include="..\viewport\viewport.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="..\cuda\cr_tests.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="..\cuda\eric.cu">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="..\cuda\max.cu">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="..\cuda\mem_tests.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="..\cuda\mesh.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="..\cuda\simulation.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="..\cuda\snow.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="..\cuda\tim.cu">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="..\cuda\wil.cu">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="..\cuda\wil_tests.cu">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <None Include="..\ui\mainwindow.ui" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\extras\visual_studio_integration\MSBuildExtensions\CUDA 7.5.targets" />
+  </ImportGroup>
+</Project>
